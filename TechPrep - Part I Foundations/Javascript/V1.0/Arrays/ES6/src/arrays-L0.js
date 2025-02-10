@@ -9,11 +9,19 @@ let L0 = function() {
   //  the array.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n) the return statement allocated O(n) space for the result array
+  // What is the time it took to you complete this solution?  : 1min
   this.generateRange1 = () => {
-    // Your code here...
+    
+    const res = [];
+
+    for (let i = -100; i <= 72; i++) {
+      res.push(i);
+    }
+
+    return res;
+
   };
 
 
@@ -23,11 +31,20 @@ let L0 = function() {
   //  the array.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n) -- the return statement allocated O(n) space for the res array
+  // What is the time it took to you complete this solution?  : 1min
   this.generateRange2 = () => {
-    // Your code here...
+    const res = [];
+
+    let i = -24;
+
+    while (i <= 118) {
+      res.push(i);
+      i++;
+    }
+
+    return res;
   };
 
 
@@ -38,11 +55,18 @@ let L0 = function() {
   //  the array.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n) -- the return statement allocated O(n) space for the res array
+  // What is the time it took to you complete this solution?  : 1min
+  
   this.generateRange3 = () => {
-    // Your code here...
+    const res = [];
+
+    for (let i = 108; i >= -67; i--) {
+      res.push(i);
+    }
+
+    return res;
   };
 
 
@@ -52,11 +76,20 @@ let L0 = function() {
   // Generate an array with the range of numbers from 67 to -8 using a while loop and return the array.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n) -- the return statement allocated O(n) space for the res array
+  // What is the time it took to you complete this solution?  : 1min
   this.generateRange4 = () => {
-    // Your code here...
+    const res = [];
+
+    let i = 67;
+
+    while (i >= -8) {
+      res.push(i);
+      i--;
+    }
+
+    return res;
   };
 
 
@@ -68,11 +101,18 @@ let L0 = function() {
   //  and return the array.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n) -- the return statement allocated O(n) space for the res array
+  // What is the time it took to you complete this solution?  : 1min
+  
   this.generateMultiplesOf5 = () => {
-    // Your code here...
+    const res = [];
+
+    for (let i = -35; i <= 115; i+=5) {
+      res.push(i);
+    }
+
+    return res;
   };
 
 
@@ -84,11 +124,24 @@ let L0 = function() {
   //   Count how many there are and return the count as the result.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 2min
+
   this.generateMultiplesOf3 = () => {
-    // Your code here...
+    const res = [];
+
+    let start = 76;
+
+    while (start % 3 !== 0) {
+      start--;
+    }
+
+    for (let i = start; i >= -21; i-=3) {
+      res.push(i);
+    }
+
+    return res.length;
   };
 
 
@@ -98,11 +151,24 @@ let L0 = function() {
   // Iterate and count how many multiples of 3 there are between 76 and -21.  Return the count.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 1min
   this.generateMultiplesOf3NoArray = () => {
-    // Your code here...
+    
+    let count = 0;
+
+    let start = 76;
+
+    while (start % 3 !== 0) {
+      start--;
+    }
+
+    for (let i = start; i >= -21; i-=3) {
+      count++;
+    }
+
+    return count;
   };
 
 
@@ -113,11 +179,24 @@ let L0 = function() {
   //  is the first or last number a multiple of 3?
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 1min
+
   this.generateMultiplesOf3FewestPossible = () => {
-    // Your code here...
+    let count = 0;
+
+    let start = 76;
+
+    while (start % 3 !== 0) {
+      start--;
+    }
+
+    for (let i = start; i >= -21; i-=3) {
+      count++;
+    }
+
+    return count;
   };
 
 
@@ -128,11 +207,21 @@ let L0 = function() {
   //  Return the array.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 1min
+
   this.generateMultiplesOf3Or5 = () => {
-    // Your code here...
+    
+    const res = [];
+
+    for (let i = 6; i <= 85; i++) {
+      if (i % 3 === 0 || i % 5 === 0) {
+        res.push(i);
+      }
+    }
+
+    return res;
   };
 
 
@@ -140,14 +229,28 @@ let L0 = function() {
   // #10 Surprise Me
   //
   // Write a function that takes an argument that will be a positive integer less than or equal to 20.
+  //  Positive integer from 0 to 20
   //  Generate an array with the range of numbers 200 to zero that are multiples of the number passed in.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 2min
+
   this.surpriseMe = (multiple) => {
-    // Your code here...
+    const res = [];
+
+    let start = 200;
+
+    while (start % multiple !== 0) {
+      start--;
+    }
+
+    for (let i = start; i >= 0; i-= multiple) {
+      res.push(i);
+    }
+
+    return res;
   };
 
 
@@ -161,11 +264,11 @@ let L0 = function() {
   // Test Output 1 : [4, 6, 2, 1, 9, 3, 10, 1, 3, 7, 8]
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n): the result output allocated O(n) space for the array
+  // What is the time it took to you complete this solution?  : 1min
   this.combineArrays = (array1, array2) => {
-    // Your code here...
+    return [...array1, ...array2];
   };
 
 
@@ -182,11 +285,18 @@ let L0 = function() {
   // Test Output 2 : false
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 1min
+
   this.contains = (input, value) => {
-    // Your code here...
+    for (let i = 0; i < input.length; i++) {
+      if (input[i] === value) {
+        return true;
+      }
+    }
+
+    return false;
   };
 
 
@@ -196,15 +306,21 @@ let L0 = function() {
   // Write a function to covert celsius to fahrenheit and a 2nd function to convert fahrenheit to celsius.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(1)
+  // What is the Space Complexity of your solution? : O(1) -- the return statement allocated O(n) space for the result integer
+  // What is the time it took to you complete this solution?  : 2min
+
   this.celsiusToFahrenheit = (degrees) => {
-    // Your code here...
+    //°F = (°C × 9/5) + 32
+
+    return (degrees * 9/5) + 32;
   };
 
   this.fahrenheitToCelsius = (degrees) => {
-    // Your code here...
+    //°F = (°C × 9/5) + 32
+
+    // °C = (°F - 32) × 5/9
+    return (degrees -32) * 5/9;
   };
 
 
@@ -215,11 +331,17 @@ let L0 = function() {
   //  using the above method.  If both F and C are the same, return the number.  Otherwise, return null;
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 1min
   this.temperatureMatcher = () => {
-    // Your code here...
+    for (let i = -200; i <= 200; i++) {
+      if (this.celsiusToFahrenheit(i) === i) {
+        return i;
+      }
+    }
+
+    return null;
   };
 
 
@@ -234,11 +356,20 @@ let L0 = function() {
   // Test Output 1 : [1, 7, 9, 23, 55, 89, 91, 99]
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 3min
+
   this.extractAllOdds = (input) => {
-    // Your code here...
+    const res = [];
+
+    for (let i = input.length - 1; i>= 0; i--) {
+      if (input[i] % 2 !== 0) {
+        res.push(input[i]);
+      }
+    }
+
+    return res;
   };
 
 
@@ -249,11 +380,28 @@ let L0 = function() {
   //  loop) containing any number is this a multiple of both 3 and 5.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 4min
+
   this.bonusMultiplesOf3And5 = (start, end) => {
-    // Your code here...
+    
+    const res = [];
+
+    //IIF end is less than start then swap them
+    if (end < start) {
+      [start, end] = [end, start];
+    }
+
+    // IFF start AND end are multiples of start
+    while (start <= end) {
+      if (start % 3 === 0 && start % 5 === 0) {
+        res.push(start);
+      }
+      start++;
+    }
+
+    return res;
   };
 
 
@@ -279,11 +427,27 @@ let L0 = function() {
   // Test Output 1 & 2: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75];
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 2min
+
   this.bonusMultiplesOfRangeUsingFewest = (start, end, multiple) => {
-    // Your code here...
+    const res = [];
+
+    if (end < start) {
+      [start, end] = [end, start];
+    }
+
+    while (start % multiple !== 0) {
+      start++;
+    }
+
+    while (start <= end) {
+      res.push(start);
+      start += multiple;
+    }
+
+    return res;
   };
 
 
@@ -305,11 +469,27 @@ let L0 = function() {
   // Test Output 1 & 2: [27,24,21,18];
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 1min
   this.bonusMultiplesOfRangeUsingFewestBackwards = (start, end, multiple) => {
-    // Your code here...
+    if (end > start) {
+      [start, end] = [end, start];
+    }
+
+    const res = [];
+
+    while (start % multiple !== 0) {
+      start--;
+    }
+
+    while (start >= end) {
+      res.push(start);
+      start -= multiple;
+    }
+
+    return res;
+
   };
 
 
@@ -318,7 +498,7 @@ let L0 = function() {
   //
   // Write a function that receives a range and a multiple and then returns how many values are multiples
   //  of `multiple` within that range.  See if you can figure out a formula that will directly compute the
-  //  answer without using any loops are arrays.
+  //  answer without using any loops or arrays.
   //
   // HINT: `start` or `end` may not be a multiple of `multiple`, you'll have to discover which
   //        multiple is closest to each first.
@@ -339,11 +519,31 @@ let L0 = function() {
   // Test Output 3 & 4: 13
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 3min
+
   this.bonusMultiplesOfRangeComputation = (start, end, multiple) => {
-    // Your code here...
+    if (start < 0 || end < 0 || multiple < 0) {
+      return null;
+    }
+
+    if (end < start) {
+      [start, end] = [end, start];
+    }
+
+    while (start % multiple !== 0) {
+      start++;
+    }
+
+    let count = 0;
+
+    while (start <= end) {
+      count++;
+      start += multiple;
+    }
+
+    return count;
   };
 
 
@@ -364,11 +564,26 @@ let L0 = function() {
   // Test Output 1: [4, 1, 6, 3, 2, 7, 1, 8, 9, 3, 10]
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 4min
+
   this.bonusCombineArraysInterleaved = (input1, input2) => {
-    // Your code here...
+    if (!Array.isArray(input1) || !Array.isArray(input2) || input1.length === 0 || input2.length === 0 || input2.length > input1.length) {
+      return null;
+    }
+
+    const res = [];
+
+    for (let i = 0; i < input1.length; i++) {
+      res.push(input1[i]);
+
+      if (input2[i]) {
+        res.push(input2[i]);
+      }
+    }
+
+    return res;
   };
 
 
@@ -392,11 +607,29 @@ let L0 = function() {
   // Test Output 2: [1,7,9,8,8,2,4,0,5,11,5,6,12,34]
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n) -- the result allocated O(n) space for the res array
   //
   this.bonusCombineArraysInterleaved2 = (input1, input2) => {
-    // Your code here...
-  };
-};
+    if (!Array.isArray(input1) || !Array.isArray(input2) || input1.length === 0 || input2.length === 0) {
+      return null;
+    }
 
+    const res = [];
+
+    let length = Math.max(input1.length, input2.length);
+
+    for (let i = 0; i < length; i++) {
+      if (i < input1.length) {
+        res.push(input1[i]);
+      }
+
+      if (i < input2.length) {
+        res.push(input2[i]);
+      }
+    }
+
+    return res;
+  };
+
+}

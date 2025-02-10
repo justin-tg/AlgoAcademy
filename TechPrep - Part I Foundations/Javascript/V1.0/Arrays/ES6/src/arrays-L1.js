@@ -15,13 +15,11 @@ let L1 = function() {
   //   value provided by `value` or zero if not provided.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
   //
   this.fillArray = (input, value) => {
-    value = value || 0;
-
-    // fill it
+    return input.fill(value);
   };
 
 
@@ -33,11 +31,17 @@ let L1 = function() {
   //   added together.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
   //
   this.sum = (input) => {
-    // Return sum
+    let res = 0;
+
+    for (const num of input) {
+      res += num;
+    }
+
+    return res;
   };
 
 
@@ -49,16 +53,22 @@ let L1 = function() {
   //   of elements in the array.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
   //
   this.average = (input) => {
-    // return average
+    let sum = 0;
+
+    for (const num of input) {
+      sum += num;
+    }
+
+    return sum / input.length;
   };
 
 
 
-  //  4. Return the median of an array that even and odd number of elements
+  //  4. Return the median of an array that has either even and odd number of elements
   //
   //
   //   The median is the middle value of a sorted array.  When even number of values, its the
@@ -68,11 +78,21 @@ let L1 = function() {
   //   https://en.wikipedia.org/wiki/Median
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(1)
+  // What is the Space Complexity of your solution? : O(1)
+  // What is the time it took to you complete this solution?  : 5min
+
   this.median = (input) => {
-    // return median
+    input.sort((a, b) => a - b);
+
+    let middle = input.length / 2;
+
+    if (input.length % 2 !== 0) {
+      middle = Math.floor(middle);
+      return input[middle];
+    } else if (input.length % 2 === 0) {
+      return (input[middle - 1] + input[middle]) / 2;
+    }
   };
 
 
@@ -88,11 +108,19 @@ let L1 = function() {
   //  Test Output 1 : 0
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(1)
+  // What is the time it took to you complete this solution?  : 1min
+
   this.findIndex = (input, value) => {
-    // return index or null
+    
+    for (let i = 0; i < input.length; i++) {
+      if (input[i] === value) {
+        return i;
+      }
+    }
+
+    return null;
   };
 
 
@@ -109,11 +137,24 @@ let L1 = function() {
   // Test Output 1 : 11
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(1)
+  // What is the time it took to you complete this solution?  : 2min
+
   this.findNthLastOdd = (input, nth) => {
-    // Return the nth last odd number
+    let oddCount = 0;
+
+    for(let i = input.length - 1; i >= 0; i--) {
+      if (input[i] % 2 !== 0) {
+        oddCount++;
+      }
+
+      if (oddCount === nth) {
+        return i;
+      }
+    }
+
+    return null;
   };
 
 
@@ -127,11 +168,30 @@ let L1 = function() {
   //  Test Output 1: [3,4,5]
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 4min
+
   this.getRangeInclusive = (input, start, end) => {
-    // Return new range according to above criteria
+
+    if (end < start) {
+      [start, end] = [end, start];
+    }
+
+    if (input == null || input.length === 0 || start < 0 || start >= input.length) {
+      return null;
+    }
+
+    if (end > input.length) {
+      end = input.length - 1;
+    }
+
+    const res = [];
+    for (let i = start; i <= end; i++) {
+      res.push(input[i]);
+    }
+
+    return res;
   };
 
 
@@ -145,11 +205,20 @@ let L1 = function() {
   //   HINT: See if you can reuse any functions you completed earlier in this file
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 2min
+  
   this.getAverageOfRange = (input, start, end) => {
-    // Return average of values selected from sub array
+    let input2 = this.getRangeInclusive(input, start, end);
+
+    let sum = 0;
+
+    for (const num of input2) {
+      sum += num;
+    }
+
+    return sum / input2.length;
   };
 
 
@@ -162,11 +231,18 @@ let L1 = function() {
   //  Test Output 1: [0, 10, 20, 30, 35, 55, 75, 100]
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 1min
+
   this.copyArray = (input) => {
-    // Copy it
+    const res = [];
+
+    for (const ele of input) {
+      res.push(ele);
+    }
+
+    return res;
   };
 
 
@@ -177,11 +253,19 @@ let L1 = function() {
   //  An interviewers favorite.  Swap two elements within an array.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
-  this.swapWithinArray = (input, sourceIndex, targetIndex) => {
-    // Swap it
+  // What is the Time Complexity of your solution?  : O(1)
+  // What is the Space Complexity of your solution? : O(1)
+  // What is the time it took to you complete this solution?  : 1min
+
+  this.swapWithinArray = (array, ind1, ind2) => {
+    
+    const ele2 = array[ind2];
+
+    array[ind2] = array[ind1];
+    array[ind1] = ele2;
+
+    return array;
+
   };
 
 
@@ -196,11 +280,18 @@ let L1 = function() {
   // Test Output 1: [1,2,3,4,5,6,_,_,_,_,_,_];
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
-  this.expandArray = (from, to) => {
-    // Expand array
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 2min
+
+  this.expandArray = (a, b) => {
+    b.fill(0);
+
+    for (let i = 0; i < a.length; i++) {
+      b[i] = a[i];
+    }
+
+    return b;
   };
 };
 
