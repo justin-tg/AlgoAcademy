@@ -5,7 +5,6 @@ let L1 = function() {
     constructor(initialCapacity) {
       this.capacity = initialCapacity || 8;   // Default array size initially to 8 elements
       this.length = 0;
-
       this.storage = new Array(this.capacity);
     }
 
@@ -13,16 +12,25 @@ let L1 = function() {
 
 
     add(value) {
+      if (this.length === this.capacity) {
+        this.resize();
+      }
+
       this.storage[this.length++] = value;
     }
 
 
-
-
     insert(index, value) {
+
+      if (this.length === this.capacity) {
+        this.resize();
+      }
+
       this.storage.splice(index, 0, value);
       this.storage[index] = value;
       this.storage.length -= 1;
+
+      this.length += 1;
     }
 
 
@@ -31,10 +39,11 @@ let L1 = function() {
     remove(index) {
       if (index === undefined || index === null) {
         delete this.storage[this.length];
-      }
-      else {
+      } else {
         this.storage.splice(index, 1);
       }
+
+      this.length--;
     }
 
 
@@ -59,7 +68,12 @@ let L1 = function() {
 
 
     resize() {
-      // ...
+      this.capacity = this.capacity * 2;
+      let newArray = new Array(this.capacity);
+      for (let i = 0; i < this.storage.length; i++) {
+        newArray[i] = this.storage[i];
+      }
+      this.storage = newArray;
     }
 
 

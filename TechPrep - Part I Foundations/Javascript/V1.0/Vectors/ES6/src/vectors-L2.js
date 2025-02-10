@@ -15,21 +15,41 @@ let L2 = function() {
 
 
     add(value) {
-      // You may start with your L1 implementation if you wish, but change to use no built-in functions
+      let length = this.length;
+      this.resize();
+      this.storage[length] = value;
+      this.length++;
     }
 
 
 
 
     insert(index, value) {
-      // You may start with your L1 implementation if you wish, but change to use no built-in functions
+      this.resize();
+      for (let i = this.length; i > index; i--) {
+        this.storage[i] = this.storage[i-1];
+      }
+      this.set(index, value);
+      this.length +=1;
     }
 
 
 
-
     remove(index) {
-      // You may start with your L1 implementation if you wish, but change to use no built-in functions
+      this.resize(false);
+
+      if (index === null || index === undefined) {
+        this.storage[this.capacity] = undefined;
+      } else {
+
+        for (let i = index; i < this.capacity; i++) {
+          this.storage[i] = this.storage[i+1];
+        }
+
+        this.storage[this.capacity] = undefined;
+
+      }
+      this.length--;
     }
 
 
@@ -53,11 +73,17 @@ let L2 = function() {
 
 
 
-    resize() {
-      this.capacity *= 2;
+    resize(double = true) {
+
+      if (double && this.length === this.capacity) {
+        this.capacity *= 2;
+      } else if (!double && this.length < this.capacity / 2) {
+        this.capacity = Math.floor(this.capacity /= 2);
+      }
+
       let tempStorage = new Array(this.capacity);
 
-      for (let i=0; i<this.storage.length; i++) {
+      for (let i = 0; i < this.capacity; i++) {
         tempStorage[i] = this.storage[i];
       }
 
@@ -79,3 +105,15 @@ let L2 = function() {
 
   return Vector;
 };
+
+let Vector = L2()
+let x = new Vector();
+
+console.log(x.capacity);
+
+for (let i = 0; i < 7; i++) {
+  x.add(i);
+}
+
+console.log(x.capacity);
+

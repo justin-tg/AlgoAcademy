@@ -40,8 +40,7 @@ Open [vectors-L1.js](ES6/src/vectors-L1.js) and follow the prompts below to comp
 
 ###### Obectives
 
-John Doe left the company and you inherited his incomplete Vector class.  _Your objective is to implement the resize_
- functionality.  When the vector length has reached capacity, it must double in size.  Complete the
+John Doe left the company and you inherited his incomplete Vector class.  _Your objective is to implement the resize_ functionality.  When the vector length has reached capacity, it must double in size.  Complete the
  following tasks:
 
  1. .add() should maintain the .length field correctly

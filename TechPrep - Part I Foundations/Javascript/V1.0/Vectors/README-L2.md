@@ -39,10 +39,8 @@ Open [vectors-L2.js](ES6/src/vectors-L2.js) and follow the prompts below to comp
 
 ###### BONUS: Only complete this after the others.
 
- 1. After adding (capacity - 1) items, log the v.storage array.  Also the v.toArray().  Observe
-     the differences.
+ 1. After adding (capacity - 1) items, log the v.storage array.  Also the v.toArray().  Observe the differences.
  2. Add a couple more items, and log them again and observe.
  3. Remove a few until (capacity - 3).  Log them again and observe.
  4. Be able to explain why they do not match.
  5. Be able to explain why that is okay.
-

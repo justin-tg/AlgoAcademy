@@ -15,8 +15,6 @@ let L3 = function() {
 
 
     add(value) {
-      // Start with your L2 implementation
-
       this.resize(false, this.length + 1);
       this.storage[this.length++] = value;
     }
@@ -25,8 +23,6 @@ let L3 = function() {
 
 
     insert(index, value) {
-      // Start with your L2 implementation
-
       if (index < 0 || index >= this.length) {
         throw new Error("index out of range.");
       }
@@ -50,8 +46,6 @@ let L3 = function() {
 
 
     remove(index) {
-      // Start with your L2 implementation
-
       if (index < 0 || index >= this.length) {
         throw new Error("index out of range.");
       }
@@ -76,8 +70,6 @@ let L3 = function() {
     // Vector.set(5, value) is the same as array[5] = value;
     //
     set(index, value) {
-      // Start with your L2 implementation
-
       if (index < 0 || index >= this.length) {
         throw new Error("index out of range.");
       }
@@ -99,8 +91,6 @@ let L3 = function() {
 
       return this.storage[index];
     }
-
-
 
 
     resize(isRemoving, desiredLength) {

@@ -14,11 +14,24 @@ let L0 = function() {
   //  Test Output 2: [9,8,7,6,5,4,3,2,1]
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(1)
+  // What is the time it took to you complete this solution?  : 5min
+
   this.reverseArray = (input) => {
-    // Your code here...
+    
+    let oppositeIndex = input.length - 1;
+    for (let i = 0; i < Math.ceil(input.length / 2); i++) {
+      let temp = input[i];
+
+      input[i] = input[oppositeIndex];
+      input[oppositeIndex] = temp;
+
+      oppositeIndex--;
+    }
+
+    return input;
+
   };
 
 
@@ -28,18 +41,30 @@ let L0 = function() {
   //      no builtin array methods like .splice, .push, .pop, etc.
   //
   //
-  //  Test Input 1 : [1,2,3,4,5,6,7,8,9,10], 7
-  //  Test Output 1: [1,2,3,4,5,6,7,null,8,9,10]
+  //  Test Input 1 : [1,2,3,4,5,6,7,8,9,10], 7   // length 9
+  //  Test Output 1: [1,2,3,4,5,6,7,null,8,9,10] // length 10
   //
   //  Test Input 2 : [1,2,3,4,5,6,7,8,9], 2
   //  Test Output 2: [1,2,null,3,4,5,6,7,8,9]
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(1)
+  // What is the time it took to you complete this solution?  : 6min
+
+  // [  a,  b,    c,  d  ]
+
+  // [  a,  null, b,  c,  d  ]
+
   this.shiftRight = (input, index) => {
-    // Your code here...
+
+    for (let i = input.length; i > index; i--) {
+      input[i] = input[i - 1];
+    }
+
+    input[index] = null;
+    return input;
+
   };
 
 
@@ -56,11 +81,17 @@ let L0 = function() {
   //  Test Output 2: [1,2,4,5,6,7,8,9, undefined]
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(1)
+  // What is the time it took to you complete this solution?  : 2min
+  
   this.shiftLeft = (input, index) => {
-    // Your code here...
+    
+    for (let i = index; i < input.length; i++) {
+      input[i] = input[i+1];
+    }
+
+    return input;
   };
 
 
@@ -96,11 +127,34 @@ let L0 = function() {
   //  Test Output 2: [1,2,null,3,4,5,6,7,8,9, _, _, _, _, _, _]
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 3min
+  
   this.shiftRightAndResize = (input, index) => {
-    // Your code here...
+    function doublingTechnique(array) {
+      // 1. Create new array of the desired length (2x the current capacity)
+      let capacity = array.length * 2;
+      let newArray = new Array(capacity);
+      // 2. Copy all elements from old array into new array
+      for (let i = 0; i < array.length; i++) {
+        newArray[i] = array[i];
+      }
+      // 3. Set the old array to the new array
+      array = newArray;
+      return array;
+    }
+
+    let res = doublingTechnique(input);
+
+    // moving elements 1 position to the right, means start at the end and iterate to just before the index
+    for (let i = res.length - 1; i > index; i--) {
+      res[i] = res[i-1];
+    }
+
+    res[index] = null;
+    
+    return res;
   };
 
 
@@ -126,7 +180,7 @@ let L0 = function() {
   //     3. Set the old array to the new array
   //
   //    In his exercise, create an array that defaults to a capacity of 8.  If removing an item
-  //     would cause count to become half the capacity, then resize using hte halving technique.
+  //     would cause count to become half the capacity, then resize using the halving technique.
   //
   //
   //  Test Input 1 : [1,2,3,4,5,_,_,_], 2   (do this 4 times)
@@ -136,10 +190,33 @@ let L0 = function() {
   //  Test Output 2: [1,2,3,4,5,6,7,8]
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
-  //
+  // What is the Time Complexity of your solution?  : O(n)
+  // What is the Space Complexity of your solution? : O(n)
+  // What is the time it took to you complete this solution?  : 3min
+  
   this.shiftLeftAndResize = (input, count, index) => {
-    // Your code here...
+    function halvingTechnique(array) {
+      let length = array.length / 2;
+      let newArray = new Array(length);
+
+      for (let i = 0; i < newArray.length; i++) {
+        newArray[i] = array[i];
+      }
+
+      array = newArray;
+      return array;
+    }
+
+    if (count === input.length / 2) {
+      input = halvingTechnique(input);
+    }
+
+    // moving an element to the left means iterating from right to left, so index to end
+    for (let i = index + 1; i < input.length -1; i++) {
+      input[i] = input[i + 1];
+    }
+
+    return input;
+
   };
 };
