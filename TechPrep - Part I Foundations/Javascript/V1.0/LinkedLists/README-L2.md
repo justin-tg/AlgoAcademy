@@ -85,5 +85,3 @@ Some of the most important muscle-memory skills to have on a whiteboard when wor
  * Iterating through a list to find the node at some position
  * Finding the previous node
  * Knowing which operations are O(1) and which aren't and implementing accordingly
- 
- 

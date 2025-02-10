@@ -446,8 +446,7 @@ let L0_P2 = function() {
       if (!head.next) {
         tail = node;
       }
-    }
-    else {
+    } else {
       let prev = get(index -1);
 
       if (!prev) {
@@ -465,14 +464,16 @@ let L0_P2 = function() {
     return node;
 
 
+    // for (let i = 0; i <= length - 1; i++);
+
+    // for (let i = 0; i < length; i++);
 
     function get(index) {
-      // Your code here...
-
       let temp = head;
 
       if (index) {
         let pos = 0;
+
         while (pos++ < index && temp) {
           temp = temp.next;
         }
@@ -480,6 +481,7 @@ let L0_P2 = function() {
 
       return temp;
     }
+
   };
 
 

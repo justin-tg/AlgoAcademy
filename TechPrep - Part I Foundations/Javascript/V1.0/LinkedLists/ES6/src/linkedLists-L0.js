@@ -31,11 +31,14 @@ let L0_P1 = function() {
   // Output: The new node
   //
   //
-  // What is the Time Complexity of your implementation  :
-  // What is the Space Complexity of your implementation :
-  //
+  // What is the Time Complexity of your implementation  : O(1)
+  // What is the Space Complexity of your implementation : O(1)
+  // 
+
+  // Creating this new linked list node is a constant time operation, there is no list or iterator when the node is initialized in this case
+
   this.createNewNode = (data) => {
-    // Your code here...
+    return linkedList = new LinkedListNode(data);
   };
 
 
@@ -47,11 +50,22 @@ let L0_P1 = function() {
   //         Assigned it to head
   //
   //
-  // What is the Time Complexity of your implementation  :
-  // What is the Space Complexity of your implementation :
-  //
+  // What is the Time Complexity of your implementation  : O(1)
+  // What is the Space Complexity of your implementation : O(1)
+  
+  // I am making one space allocation in O(1)
   this.createFirstNode = (data) => {
-    // Your code here...
+
+    // node1 --> node2 --> node3
+
+    // data1     data2     data3
+
+    let node = new LinkedListNode(data);
+
+    head = node;
+
+    return node;
+
   };
 
 
@@ -64,11 +78,19 @@ let L0_P1 = function() {
   //         Old list referenced by next
   //
   //
-  // What is the Time Complexity of your implementation  :
-  // What is the Space Complexity of your implementation :
+  // What is the Time Complexity of your implementation  : O(1)
+  // What is the Space Complexity of your implementation : O(1)
   //
   this.createAndInsertFirst = (data) => {
-    // Your code here...
+    let node = new LinkedListNode(data);
+
+    if (head) {
+      node.next = head;
+    }
+
+    head = node;
+
+    return node;
   };
 
 
@@ -82,11 +104,32 @@ let L0_P1 = function() {
   //         Maintain the head variable as-needed.
   //
   //
-  // What is the Time Complexity of your implementation  :
-  // What is the Space Complexity of your implementation :
+  // What is the Time Complexity of your implementation  : O(1)
+  // What is the Space Complexity of your implementation : O(1)
   //
   this.createAndInsertSecond = (data) => {
-    // Your code here...
+
+    let node = new LinkedListNode(data);
+
+    // At 2nd position in the list
+    if (head) {
+      // headNode  ---> node1  ---> node2
+
+      // headNode  ---> nodeBeingInserted  ---> node1  ---> node2
+
+      // get the head node next, and assign it to the node being inserted next
+      node.next = head.next;
+      // get the head node and assign it's next to the node 
+      head.next = node;
+
+    // if there is no head then put the node at the 1st position in the list
+    } else {
+      head = node;
+      // createFirstNode(data);
+    }
+
+    return node;
+
   }
 };
 
@@ -105,11 +148,17 @@ let L0_P2 = function() {
   //         Assigned it to tail if there wasn't already one
   //
   //
-  // What is the Time Complexity of your implementation  :
-  // What is the Space Complexity of your implementation :
+  // What is the Time Complexity of your implementation  : O(1)
+  // What is the Space Complexity of your implementation : O(1)
   //
   this.createFirstNode = (data) => {
-    // Your code here...
+    let node = new LinkedListNode(data);
+
+    head = node;
+    tail = node;
+
+    return node;
+
   };
 
 
@@ -123,11 +172,22 @@ let L0_P2 = function() {
   //         Old list referenced by next
   //
   //
-  // What is the Time Complexity of your implementation  :
-  // What is the Space Complexity of your implementation :
-  //
+  // What is the Time Complexity of your implementation  : O(1)
+  // What is the Space Complexity of your implementation : O(1)
+
+  // I allocated a constant number of spaces for the variables used here: node, head and tail
   this.createAndInsertFirst = (data) => {
-    // Your code here...
+    let node = new LinkedListNode(data);
+    
+    if (head) {      
+      node.next = head;
+    } else {
+      tail = node;
+    }
+
+    head = node;
+
+    return node;
   };
 
 
@@ -142,11 +202,38 @@ let L0_P2 = function() {
   //         Maintain the head or tail variable as-needed.
   //
   //
-  // What is the Time Complexity of your implementation  :
-  // What is the Space Complexity of your implementation :
+  // What is the Time Complexity of your implementation  : O(1)
+  // What is the Space Complexity of your implementation : O(1)
   //
   this.createAndInsertSecond = (data) => {
-    // Your code here...
+
+    // headNode ---> node1 ---> node2 ---> node3
+
+    // headNode ---> newNode ---> node1 ---> node2 ---> node3
+
+
+
+    // headNode
+
+    // headNode --> newNode
+
+    let node = new LinkedListNode(data);
+
+    if (head) {
+
+      if (head.next) {
+        node.next = head.next;
+      } else {
+        tail = node;
+      }
+
+      head.next = node;
+    } else {
+      head = node;
+      tail = node;
+    }
+
+    return node;
   };
 
 
@@ -159,11 +246,23 @@ let L0_P2 = function() {
   //         Assigned to tail
   //
   //
-  // What is the Time Complexity of your implementation  :
-  // What is the Space Complexity of your implementation :
+  // What is the Time Complexity of your implementation  : O(1)
+  // What is the Space Complexity of your implementation : O(1)
   //
   this.addNewNode = (data) => {
-    // Your code here...
+
+    let node = new LinkedListNode(data);
+
+    if (head) {
+      tail.next = node;
+      tail = node;
+    } else {
+      head = node;
+      tail = node;
+    }
+
+    return node;
+
   };
 
 
@@ -176,11 +275,37 @@ let L0_P2 = function() {
   //         Head and Tail properly assigned
   //
   //
-  // What is the Time Complexity of your implementation  :
-  // What is the Space Complexity of your implementation :
+  // What is the Time Complexity of your implementation  : O(1)
+  // What is the Space Complexity of your implementation : O(1)
   //
   this.removeFirstNode = () => {
-    // Your code here...
+
+    // CASE 1
+    // INPUT  |  headNode ---> node1 ---> node2 ---> node3
+    // OUTPUT |  headNode ---> newNode ---> node1 ---> node2 ---> node3
+
+    // CASE 2
+    // INPUT  |  headNode (head = this and tail = this)
+    // OUTPUT |  -- no node --
+
+    // CASE 3
+    // -- no node --
+    // -- no node --
+
+    //const element = array.pop();
+
+    let node = head;
+
+    if (head) {
+      head = head.next; // | head is set to undefined if there is a next node
+
+      if (!head) {
+        tail = null;
+      }
+    }
+
+    return node;
+
   };
 
 
@@ -193,11 +318,39 @@ let L0_P2 = function() {
   //         Head and tail properly assigned
   //
   //
-  // What is the Time Complexity of your implementation  :
-  // What is the Space Complexity of your implementation :
+  // What is the Time Complexity of your implementation  : O(1)
+  // What is the Space Complexity of your implementation : O(1)
   //
   this.removeSecondNode = () => {
-    // Your code here...
+
+    // CASE 1
+    // GIVEN LIST      |  headNode ---> node1 ---> node2 ---> node3
+    // RESULTANT lIST  |  headNode ---> node2 ---> node3
+    // OUTPUT          |  node1
+
+    // CASE 2
+    // GIVEN LIST      |  headNode ---> node1
+    // RESULTANT lIST  |  headNode 
+    // OUTPUT          |  node1
+
+    // CASE 3
+    // GIVEN LIST      |  -- no node --
+    // RESULTANT LIST  |  -- no node --
+    // OUTPUT          |  none, or null
+
+    let node = head;
+
+    if (head) {
+        node = head.next;
+        head.next = node.next;
+
+        if (tail === node) {
+          tail = head;
+        }
+    }
+
+    return node;
+
   };
 
 
@@ -216,16 +369,30 @@ let L0_P2 = function() {
   //  * Index > 1 Etc.
   //
   //
-  // What is the Time Complexity of your implementation  :
-  // What is the Space Complexity of your implementation :
+  // What is the Time Complexity of your implementation  : O(n)
+  // What is the Space Complexity of your implementation : O(1)
   //
   this.getNodeAtIndex = (start, index) => {
-    // Your code here...
+
+    
+    let node = start;
+    let nodeNum = 0;
+    while (nodeNum < index) {
+      if (!node.next) {
+        return null;
+        // throw new Error ("Error | Index out of bounds"); // ask the interviewer if this is important -- if this is not in the requirements then you are adding requirements
+      }
+      node = node.next;
+
+      nodeNum++;
+    }
+
+    return node;
+
   };
 
 
   // 10. Write a function that finds and returns the node previous to the one passed in.
-  //
   //
   // Input : (starting node, the node we want to find previous to)
   // Output: The previous node (if any)
@@ -242,8 +409,22 @@ let L0_P2 = function() {
   // What is the Time Complexity of your implementation  :
   // What is the Space Complexity of your implementation :
   //
-  this.getPreviousNode = (start, node) => {
-    // Your code here...
+  this.getPreviousNode = (start, nodeToFind) => {
+
+    let node = start;
+
+    while(node.next) {
+
+      if (node.next === nodeToFind) {
+        return node;
+      }
+
+      // ... the work
+
+      node = node.next;
+    }
+
+    return null;
   };
 
 
@@ -256,11 +437,44 @@ let L0_P2 = function() {
   //         Head and tail properly assigned
   //
   //
-  // What is the Time Complexity of your implementation  :
-  // What is the Space Complexity of your implementation :
+  // What is the Time Complexity of your implementation  : O(n)
+  // What is the Space Complexity of your implementation : O(1)
   //
+
+
   this.removeLastNode = () => {
-    // Your code here...
+
+    let nodeToRemove;
+
+    // if there is a node in the list
+    if (head) {
+      nodeToRemove = tail;
+      // check if the head node is the tail node
+      if (head === tail) {
+        head = null;
+        tail = null;
+        return nodeToRemove;
+      } else {
+
+        let currentNode = head;
+        // iterate through the linked list until you find the node before the tail
+        while (currentNode.next) {
+          if (currentNode.next === tail) {
+            currentNode.next === null;
+            tail = currentNode;
+          }
+
+          currentNode = currentNode.next;
+        }
+
+      }
+    }
+    // else if there is not a node in the list
+    // } else {
+    //   throw new Error ("Error | LinkedList already empty");
+    // }
+
+    return nodeToRemove;
   };
 
 
@@ -287,17 +501,60 @@ let L0_P2 = function() {
   this.insertNodeAtIndex = (index, data) => {
     let node = new LinkedListNode(data);
 
-    // Your code here...
+    if (head) {
+
+      // if the index is less than or equal to 0 then insert the new node at the start
+      if (index <= 0) {
+        node.next = head;
+        head = node;
+
+        if (!node.next) {
+          tail = node;
+        }
+      }
+
+      // get the previous node
+      let previousNode = get(index - 1);
+      
+      // if the previous node does not exist then return the node
+      if (!previousNode) {
+        return node;
+        // throw new Error("Error | Index out of bounds");
+      }
+      // set node.next to previousNode.next
+      node.next = previousNode.next;
+      // set the previousNode.next to node
+      previousNode.next = node;
+
+      // lastly check if the node you've just inserted is the last
+      if (!node.next) {
+        tail = node;
+      }
+
+    // there is no head, so insert the node as the head and tail
+    } else if (!head) {
+      head = node;
+      tail = node;
+    }
 
     return node;
 
-
-
-    function get(index) {
-      // Your code here...
+    function get(index) { 
+      let currentNode = head;
+      let count = 0;
+    
+      while (currentNode) {
+        if (count === index) {
+          return currentNode;
+        }
+        currentNode = currentNode.next;
+        count++;
+      }
+    
+      return null;
     }
+    
   };
-
 
   // 13. Write a function that can remove any node in the list.
   //
@@ -316,17 +573,54 @@ let L0_P2 = function() {
   //  * Index > 1 Etc.
   //
   //
-  // What is the Time Complexity of your implementation  :
-  // What is the Space Complexity of your implementation :
+  // What is the Time Complexity of your implementation  : O(n)
+  // What is the Space Complexity of your implementation : O(1)
   //
   this.removeNodeAtIndex = (start, index) => {
     // Your code here...
 
+    let prev = get(index-1);
+    let curr = (prev) ? prev.next : null;
+    let next = (curr) ? curr.next : null;
+
+    if (head === null || prev === null) {
+      return null;
+    }
+
+    if (!index) {
+      head = head.next;
+
+      if (!head) {
+        tail = null;
+      }
+
+      curr = start;
+    }
+    else {
+      prev.next = next;
+      if (curr === tail) {
+        tail = prev;
+      }
+    }
+
+    return curr;
+
 
 
     function get(index) {
-      // Your code here...
+      let currentNode = start;  // head
+      
+      if (index) {
+        let count = 0;
+        while (count < index && currentNode) {
+          currentNode = currentNode.next;
+          count++;
+        }
+      }
+    
+      return currentNode;
     }
+        
   };
 
 
@@ -352,6 +646,15 @@ let L0_P2 = function() {
   // What is the Space Complexity of your implementation : O(n)
   //
   this.toArray = (start) => {
-    // Your code here...
+
+    let res = [];
+
+    while (start) {
+      res.push(start.data);
+      start = start.next;
+    }
+
+    return res;
+
   };
 };
