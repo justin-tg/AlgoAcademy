@@ -20,8 +20,13 @@ Binary means base 2.  We count by adding the power of each bit position together
   .        ... etc.
 ```
 
+11 = 3
+011 = 3
+
+100 + 11 = 111 = 7
+
 In computer, we often represent numbers in different base systems.  Below, we can see the base2
- (binary), base10 (decimal), and base16 (hexadecimal) equivelents of some numbers.
+ (binary), base10 (decimal), and base16 (hexadecimal) equivalents of some numbers.
  
 ```text
 
@@ -117,7 +122,7 @@ How these operators behave is defined by a _truth table_.  Below are the truth t
 
 ```
 
-Sometimes we want to do operations with different bit strings.  It is helpful to use someting
+Sometimes we want to do operations with different bit strings.  It is helpful to use something
  called a bitmask.  A bitmask is just a bit string with 1's and 0's in specific positions
  that we can later use to isolate and manipulate those specific bits.
 
@@ -184,16 +189,19 @@ In such a way we can swap two variables without using extra memory
  var a = 0110;
  var b = 0101;
 
+step 1:
  a = a ^ b;
      0110
      0101
     >0011
 
+step 2:
  b = a ^ b;
    a 0011
    b 0101
     >0110
 
+step 3:
  a = a ^ b
    a 0011
    b 0110
@@ -214,6 +222,8 @@ Sometimes we might want to shift the bits to the left or right.
    
       0000 0011
       0000 0110
+
+         --> parody the left most digit
 ```
 
   Shift Left 4
@@ -230,6 +240,9 @@ Sometimes we might want to shift the bits to the left or right.
 ```text
    x = x >> 1;
    x >>= 1;
+
+   001
+   000
    
       0011 0000
       0001 1000
@@ -282,23 +295,27 @@ Open [binary-L1.js](ES6/src/binary-L1.js) and follow the prompts below to comple
 Complete the following exercises:
 
  0. Write a function to test whether the 0th bit is set.
- 2. Write a function to test whether then 7th bit is set.
- 3. Write a function to test whether the 3rd and 4th bits are set.
- 4. Write a function to left-shift n number of times.
- 5. Write a function to right-shift n number of times.
- 6. Write a function that sets the 0th bit in a value.
- 7. Write a function that sets the 7th bit in a value.
- 8. Write a function that sets the 3rd and 4th bits in a value.
- 9. Write a function that logical-or's two values together.
- 10. Write a function that logical-and's two values together.
- 11. Write a function that counts the number of positive bits are set.
- 12. Write a function that returns the byte in the n position of the value.
+
+  0th bit = 1
+
+
+ 1. Write a function to test whether then 7th bit is set.
+ 2. Write a function to test whether the 3rd and 4th bits are set.
+ 3. Write a function to left-shift n number of times.
+ 4. Write a function to right-shift n number of times.
+ 5. Write a function that sets the 0th bit in a value.
+ 6. Write a function that sets the 7th bit in a value.
+ 7. Write a function that sets the 3rd and 4th bits in a value.
+ 8. Write a function that logical-or's two values together.
+ 9.  Write a function that logical-and's two values together.
+ 10. Write a function that counts the number of positive bits are set.
+ 11. Write a function that returns the byte in the n position of the value.
+ 12. Write a function to rotate a value left n-number of times.
  13. Write a function to rotate a value left n-number of times.
- 14. Write a function to rotate a value left n-number of times.
- 15. Write a function to return the parity of a value.
- 16. Write a function to convert an integer into binary.
- 17. Write a function that multiplies a number by 2 using only binary operations.
- 18. Write a function that divides a number by 2 using only binary operations.
+ 14. Write a function to return the parity of a value.
+ 15. Write a function to convert an integer into binary.
+ 16. Write a function that multiplies a number by 2 using only binary operations.
+ 17. Write a function that divides a number by 2 using only binary operations.
  
 
 ###### Critical Whiteboard Skills

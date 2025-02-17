@@ -23,7 +23,7 @@ let L2 = function() {
         this.tail = node;
       }
       else {
-        node.previous = this.tail;
+        node.prev = this.tail;
         this.tail.next = node;
         this.tail = node;
       }

@@ -8,18 +8,29 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.is0thBitSet = (value) => {
-    // Your code here...
+    return (value & 1) === 1;
+
+    // 0b001
+    //     1
+    
+    //AND
+
+    //     1 === 1
+
   };
 
 
   //  2. Write a function to test whether then 7th bit is set.
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
+  // What is the Time Complexity of your solution?  : O(1)
+  // What is the Space Complexity of your solution? : O(1)
   //
   this.is7thBitSet = (value) => {
-    // Your code here...
+    let bitMask = 0b10000000;
+
+    return !!(value & bitMask);
+    // return (value & bitMask) === bitMask;
   };
 
 
@@ -29,8 +40,9 @@ let L1 = function() {
   // What is the Time Complexity of your solution?  :
   // What is the Space Complexity of your solution? :
   //
-  this.are4rdAnd4thBitsSet = (value) => {
-    // Your code here...
+  this.are3rdAnd4thBitsSet = (value) => {
+    let bitMask = 0b11000;
+    return (value & bitMask) === bitMask;
   };
 
 
@@ -41,7 +53,7 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.leftShift = (value, n) => {
-    // Your code here...
+    return value <<= n;
   };
 
 
@@ -52,7 +64,7 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.rightShift = (value, n) => {
-    // Your code here...
+    return value >>= n;
   };
 
 
@@ -63,7 +75,7 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.set0thBit = (value) => {
-    // Your code here...
+    return value | 1;
   };
 
 
@@ -74,7 +86,8 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.set7thBit = (value) => {
-    // Your code here...
+    let bitMask = 0b10000000;
+    return value | bitMask;
   };
 
 
@@ -85,7 +98,8 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.set3rdAnd4thBits = (value) => {
-    // Your code here...
+    let bitMask = 0b11000;
+    return value | bitMask;
   };
 
 
@@ -96,7 +110,7 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.logicalOr = (x, y) => {
-    // Your code here...
+    return x | y;
   };
 
 
@@ -107,7 +121,7 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.logicalAnd = (x, y) => {
-    // Your code here...
+    return x & y;
   };
 
 
@@ -118,7 +132,13 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.howManyPositiveBitsSet = (value) => {
-    // Your code here...
+    let count = 0;
+    while (value > 0) {
+      count += (value & 1);
+      value >>= 1;
+    }
+    return count;
+
   };
 
 
@@ -133,7 +153,14 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.getByteN = (value, n) => {
-    // Your code here...
+    // let val = value >> (n * 8);
+
+    let bitMask = 0b11111111;
+
+    // return val & bitMask;
+
+    return ((value >> (n * 8)) & bitMask);
+    
   };
 
 
@@ -144,8 +171,24 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.leftRotate8Bits = (value, n) => {
-    // Your code here...
+    const bitWidth = 8;
+    n = n % bitWidth; // limit the amount of rotations to the length of the binary value ==> constant time
+  
+    for (let i = 0; i < n; i++) {
+      let bitMask = 1 << (bitWidth - 1); // Create a mask to extract the MSB (most significant bit)
+      
+      // Extract the MSB by using bitwise AND with the mask and right shift it to the LSB
+      let msb = (value & bitMask) >> (bitWidth - 1);
+      
+      // Left shift the value by 1, & compare it against 0b111111111 then depending on msb being 1 or 0 OR compare value to msb and return value
+      value = ((value << 1) & ((1 << bitWidth) - 1)) | msb;
+    }
+  
+    return value;
   };
+  
+
+
 
 
   // 14. Write a function to rotate a value left n-number of times.
@@ -155,7 +198,21 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.rightRotate8Bits = (value, n) => {
-    // Your code here...
+    const bitWidth = 8;
+    n = n % bitWidth;
+
+    for (let i = 0; i < n; i++) {
+      // extract the lsb and make it an msb bit mask for later
+      let lsb = (value & 1) << (bitWidth - 1);
+      
+      // make a bit mask that is the length of the original width and all 1's
+      // right shift the value by 1, and compare it to a bitmask of proper length with all 1s
+      value = ((value >> 1) & ((1 << bitWidth) - 1));
+
+      //set the lsb to the new msb
+      value = value | lsb;      
+    }
+    return value;
   };
 
 
@@ -168,7 +225,26 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.whichParity = (value) => {
-    // Your code here...
+
+    let count = 0;
+
+    // iterate over the binary value and increment the count for each 1 bit found
+    while (value) {
+      //check if the lsb is 1 or 0, and increment count if it is 1
+      if (value & 1) {
+        count++;
+      }
+
+      //right shift the value thus removing the lsb
+      value = value >> 1;
+    }
+
+    if (count % 2 === 0) {
+      return 0;
+    } else {
+      return 1;
+    }
+
   };
 
 
@@ -186,9 +262,23 @@ let L1 = function() {
   // What is the Time Complexity of your solution?  :
   // What is the Space Complexity of your solution? :
   //
+
+  // return output is a string of 1's and 0's ////   Output: "1110"
   this.intToBinary = (value) => {
-    // Your code here...
-  };
+    if (value === 0) {
+      return "0";
+    }
+
+    let n = Math.abs(value);
+    // Initialize an empty string to store the binary result.
+    let res = "";
+    // While the value is greater than zero:
+    while (n > 0) {
+      res = (n & 1) + res;
+      n >>= 1;
+    }
+    return res;
+  }
 
 
   // 17. Write a function that multiplies a number by 2 using only binary operations.
@@ -198,7 +288,8 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.multBy2 = (value) => {
-    // Your code here...
+    // if a value is multiplied by 2 is moves the value 1 position over to the left since binary is a 2 base system
+    return value << 1;
   };
 
 
@@ -209,6 +300,6 @@ let L1 = function() {
   // What is the Space Complexity of your solution? :
   //
   this.divBy2 = (value) => {
-    // Your code here...
+    return value >> 1;
   };
 };
