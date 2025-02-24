@@ -17,8 +17,30 @@ let L1 = class {
   // What is the Space Complexity of your solution? :
   //
   reverseInt(number) {
-    // Your code here
-  };
+
+    let res = "";
+
+    function reverse(n) {
+
+      if (n === 0) {
+        return res || "0";
+      }
+
+      res += (n % 10);
+
+      return reverse(Math.floor(n / 10));
+
+    }
+
+    let reversed = reverse(Math.abs(number));
+
+    if (number < 0) {
+      return -Number(reversed);
+    }
+
+    return Number(reversed);
+
+  }
 
 
   //  2. Write a recursive function to convert an integer to a binary string.
@@ -39,7 +61,12 @@ let L1 = class {
   // What is the Space Complexity of your solution? :
   //
   intToBinary(number) {
-    // Your code here
+
+    if (number === 0 || number === 1) {
+      return number.toString();
+    }
+
+    return this.intToBinary(Math.floor(number / 2)) + (number % 2);
   }
 
 
@@ -58,7 +85,11 @@ let L1 = class {
   // What is the Space Complexity of your solution? :
   //
   intWithCommas(number, result = "") {
-    // Your code here
+    if (number < 1000) {
+      return number.toString() + result;
+    }
+    
+    return this.intWithCommas(Math.floor(number / 1000), "," + (number % 1000).toString().padStart(3, '0')) + result;
   }
 
 
@@ -73,11 +104,29 @@ let L1 = class {
   //  n=5 => "XXXXX"
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
+  // What is the Time Complexity of your solution?  : 
+  // What is the Space Complexity of your solution? : 
   //
   logLineWithNXs(n) {
-    // Your code here
+
+    let res = "";
+
+    function recurse(num) {
+
+      if (num <= 0) {
+        return;
+      }
+
+      res+= "X";
+      recurse(num - 1);
+
+    }
+
+    recurse(n);
+
+    return res;
+
+
   }
 
 
@@ -88,24 +137,43 @@ let L1 = class {
   //
   // Example:
   //
-  //   1 =>    X
+  //   1 =>    X           1
   //
-  //   3 =>    X
+  //   3 =>    X           6
   //           XX
   //           XXX
   //
-  //   5 =>    X
+  //   5 =>    X           15
   //           XX
   //           XXX
   //           XXXX
   //           XXXXX
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
+  // What is the Time Complexity of your solution?  : 
+  // What is the Space Complexity of your solution? : 
   //
   logTriangle(n) {
-    // Your code here
+    if (n < 1) {
+      return;
+    }
+
+    this.logTriangle(n - 1);
+
+    let string = "";
+
+    function recurseNTimes(num) {
+      if (num < 1) {
+        return;
+      }
+
+      string += "X";
+      recurseNTimes(num-1);
+    }
+
+    recurseNTimes(n);
+    console.log(string);
+
   }
 
 
@@ -130,11 +198,30 @@ let L1 = class {
   //           X
   //
   //
-  // What is the Time Complexity of your solution?  :
-  // What is the Space Complexity of your solution? :
+  // What is the Time Complexity of your solution?  : 
+  // What is the Space Complexity of your solution? : 
   //
   logTriangleUpsideDown(n) {
-    // Your code here
+    if (n < 1) {
+      return;
+    }
+
+    let string = "";
+
+    function recurseNTimes(num) {
+      if (num < 1) {
+        return;
+      }
+
+      string += "X";
+      recurseNTimes(num - 1);
+    }
+
+    recurseNTimes(n);
+    console.log(string);
+
+    this.logTriangleUpsideDown(n - 1);
+
   }
 
 
@@ -152,8 +239,25 @@ let L1 = class {
   // What is the Time Complexity of your solution?  :
   // What is the Space Complexity of your solution? :
   //
-  reverseArray(input, start=0) {
-    // Your code here
+  reverseArray(input, start = 0) {
+
+    let middle = Math.floor(input.length / 2);
+
+    function reverse(fromIndex) {
+      if (fromIndex >= middle) {
+        return;
+      }
+
+      let toIndex = (input.length - 1) - fromIndex;
+
+      [ input[fromIndex], input[toIndex] ] = [ input[toIndex], input[fromIndex] ];
+
+      reverse(fromIndex + 1);
+    }
+
+    reverse(start, input);
+    return input;
+
   }
 
 
@@ -168,9 +272,24 @@ let L1 = class {
   // What is the Space Complexity of your solution? :
   //
   areArraysEqual(input1, input2, l1, l2) {
-    // Your code here
+
+    if (l1 !== l2) {
+      return false;
+    }
+
+    if (l1 === 0) {
+      return true;
+    }
+
+    if (input1[l1-1] !== input2[l2 - 1]) {
+      return false;
+    }
+
+    return this.areArraysEqual(input1, input2, l1-1, l2-1);
+
   }
 
+  
 
   //   9. Write a recursive function that will return the position of the largest element in an array
   //

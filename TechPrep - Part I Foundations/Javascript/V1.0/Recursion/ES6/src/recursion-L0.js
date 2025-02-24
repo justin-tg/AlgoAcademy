@@ -20,8 +20,26 @@ let L0 = class {
   // What is the Space Complexity of your solution? :
   //
   from1ToN(n) {
-    // Your code here...
+
+    //base case
+    if (!n) {
+      return 1;
+    }
+
+    //repeating unit of work
+    const res = this.from1ToN(n-1);
+    console.log(n);
+
   };
+
+  /*
+    1
+    2
+    3
+    4
+    5
+  */
+
 
 
   //  2. Write a recursive function to count and log N to 1.
@@ -43,7 +61,15 @@ let L0 = class {
   // What is the Space Complexity of your solution? :
   //
   fromNTo1(n) {
-    // Your code here...
+    //base case is when x equals n
+    if (n === 0) {
+      return 0;
+    }
+
+    //repeating unit of work
+    console.log(n);
+    this.fromNTo1(n-1);
+
   }
 
 
@@ -66,7 +92,12 @@ let L0 = class {
   // What is the Space Complexity of your solution? :
   //
   fromXtoY(x, y) {
-    // Your code here...
+    if (x > y) {
+      return 0;
+    }
+
+    console.log(x);
+    this.fromXtoY(x+1, y);
   }
 
 
@@ -81,8 +112,33 @@ let L0 = class {
   // What is the Space Complexity of your solution? :
   //
   getLengthOfArray(input) {
-    // Your code here...
+
+    let count = 0;
+
+    function traverseArrayRecursively(input) {
+      if (!input || !input.length) {
+        return;
+      }
+
+      input.pop();
+      traverseArrayRecursively(input);
+      count++;
+    }
+
+    traverseArrayRecursively(input);
+    return count;
+
   }
+
+  // getLengthOfArray1(input, count) {
+  //   if (!input || !input.length) {
+  //     return count;
+  //   }
+
+  //   input.pop();
+  //   this.getLengthOfArray(input, count);
+  //   count++;
+  // }
 
 
   //  5. Write a recursive function to calculate the sum of an array
@@ -95,7 +151,23 @@ let L0 = class {
   // What is the Space Complexity of your solution? :
   //
   sumOfArray(input) {
-    // Your code here...
+
+    let sum = 0;
+
+    function traverseArrayRecursively(input) {
+      if (!input || !input.length) {
+        return;
+      }
+
+      sum += input[0];
+      input = input.slice(1);
+      traverseArrayRecursively(input);
+
+    }
+
+    traverseArrayRecursively(input);
+    return sum;
+
   }
 
 
@@ -114,8 +186,27 @@ let L0 = class {
   // What is the Space Complexity of your solution? :
   //
   averageOfArray(input) {
-    // Your code here...
+
+    let sum = 0;
+    let length = 0;
+
+    function recurse(input) {
+      if (!input || !input.length) {
+        return 0;
+      }
+
+      sum += input[0];
+      length++;
+      input = input.splice(1);
+      recurse(input);
+    }
+
+    recurse(input);
+    return sum / length;
+
   }
+
+  // 
 
 
   //  7. Write a recursive function to return the sum of all evens in an array
@@ -133,8 +224,28 @@ let L0 = class {
   // What is the Space Complexity of your solution? :
   //
   sumOfEvens(input) {
-    // Your code here...
+
+    let sum = 0;
+
+    function recurse(arr) {
+      if (!arr || !arr.length) {
+        return;
+      }
+
+      if (arr[0] % 2 === 0) {
+        sum += arr[0];
+      }
+      arr = arr.splice(1);
+      recurse(arr);
+    }
+
+    recurse(input);
+
+    return sum;
+
   }
+
+
 
 
   //  8. Write a recursive function to compute the number of digits in an integer
@@ -147,7 +258,25 @@ let L0 = class {
   // What is the Space Complexity of your solution? :
   //
   numberOfDigits(n) {
-    // Your code here...
+
+    let digits = 0;
+
+    function recurse(num) {
+      if (num < 1) {
+        return;
+      }
+
+      digits++;
+      num /= 10;
+
+      recurse(num);
+
+    }
+
+    recurse(n);
+
+    return digits;
+
   }
 
 
@@ -169,7 +298,19 @@ let L0 = class {
     n = ~~n; // Convert floats to whole numbers
     k = ~~k; // Convert floats to whole numbers
 
-    // Your code here...
+
+    // returns the last digit
+    if (n % 10 === k) {
+      return true;
+    }
+
+    // if n is less than or equal to 0 then return false
+    if (n <= 0) {
+      return false;
+    }
+
+    return this.nContainsK(Math.floor(n / 10), k);
+
   }
 
 
@@ -188,6 +329,23 @@ let L0 = class {
   // What is the Space Complexity of your solution? :
   //
   power(x, y) {
-    // Your code here...
+
+    if (y === 0) {
+      return 1;
+    }
+
+    let res = y;
+
+    function multiplyTimesItself(count, value) {
+      if (count <= 0) {
+        return res;
+      }
+
+      res = value;
+      
+      return multiplyTimesItself(count - 1, value * value)
+    }
+
+    return multiplyTimesItself(x, y);
   }
 };
