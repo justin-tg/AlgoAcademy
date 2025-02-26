@@ -33,10 +33,11 @@ function findNonRepeatingCharacter(text) {
   }
 
 
-  // text
-  // a
-  // akabi
-  // advyuavida
+  // type: string
+  // test 1: a
+  // test 2: akabi
+  // test 3: advyuavida
+  // test 4: null
 
   // as you approach infinity --> infinity MAX Len is 26 
 
@@ -68,10 +69,11 @@ function findNonRepeatingCharacter(text) {
     charCount.set(char, (charCount.get(char) || 0) + 1);
   }
 
-  // Iterate over map keys (not O(n), since unique characters are limited)
+  // Iterate over maps keys in O(1) since unique characters are limited to 26 max)
   for (const [char, count] of charCount) {
-    if (count === 1) return char;
-
+    if (count === 1) {
+      return char;
+    }
     //if the index of s is before t
     // then set result to s
   }
