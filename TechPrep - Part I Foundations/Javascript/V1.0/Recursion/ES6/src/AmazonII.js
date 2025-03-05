@@ -132,41 +132,28 @@ function main() {
  * Output: 4
  */
 
-// Pseudo-code for maximizeGroups function
-
-function maximizeGroups(products) {
-    // Initialize the batch counter
-    let batchesShipped = 1;
+function maximizeGroups(products, batch = 1) {
+    // Create a new set to store unique product types for the current batch
+    let batchSet = new Set();
     
-    // Repeat until batches can no longer be formed
-    while (true) {
-        // Create a new set to store unique product types for the current batch
-        let batch = new Set();
-        
-        // Iterate through the products array
-        for (let productType = 0; productType < products.length; productType++) {
-            // Check if there is at least one unit of this product type left
-            // and ensure we are not duplicating a product type in the batch
-            if (products[productType] > 0 && !batch.has(productType)) {
-                batch.add(productType); // Add the product type to the batch
-                products[productType]--; // Decrease the count of that product type
-            }
-
-            // Stop adding products when the batch reaches its required size
-            if (batch.size === batchesShipped) {
-                break;
-            }
+    // Try to form a batch of size 'batch'
+    for (let productType = 0; productType < products.length; productType++) {
+        if (products[productType] > 0 && !batchSet.has(productType)) {
+            batchSet.add(productType);
+            products[productType]--; // Reduce count as we use one
         }
-
-        // If the batch size is smaller than required, stop creating new batches
-        if (batch.size < batchesShipped) {
+        
+        // Stop when we reach the required batch size
+        if (batchSet.size === batch) {
             break;
         }
-
-        // Increase the batch count for the next round
-        batchesShipped++;
     }
 
-    // Return the last successfully formed batch count
-    return batchesShipped - 1;
+    // If we couldn't form a full batch, return the last successful batch count
+    if (batchSet.size < batch) {
+        return batch - 1;
+    }
+
+    // Recur with incremented batch number
+    return maximizeGroups(products, batch + 1);
 }

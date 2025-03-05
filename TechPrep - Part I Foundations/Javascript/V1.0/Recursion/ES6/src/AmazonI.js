@@ -90,6 +90,7 @@ function findMinSyncTime(total_servers, servers) {
     return shortestPath;
     
 }
+
 function main() {
     const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
@@ -115,7 +116,6 @@ function main() {
 //
 //////
 
-
 /**
  * Problem 1: Find Minimum Synchronization Time
  * 
@@ -125,7 +125,7 @@ function main() {
  * Each server is bidirectionally connected to its adjacent servers in a circular fashion:
  *   - Server `1` is connected to `2` and `total_servers`.
  *   - Server `n` is connected to `n-1` and `1`.
- *   - All other servers are connected to their immediate neighbors.
+ *   - All other servers are connected to their immediate neighbors and it takes 1 unit of time to sync from one server to the next
  * 
  * A synchronization process starts from one of the active servers and spreads to all other active servers.
  * The goal is to determine the **minimum time required** to synchronize the furthest apart active servers.
@@ -148,18 +148,23 @@ function findMinSyncTime(total_servers, servers) {
         return 0;
     }
 
-    let minServer = Math.min(...servers);
-    let maxServer = Math.max(...servers);
+    // Sort the active servers to easily calculate gaps
+    servers.sort((a, b) => a - b);
 
-    // Check the forward path from lowest to highest (forward)
-    let forwardDistance = maxServer - minServer;
+    let maxGap = 0;
 
-    // Check the backward path from highest wrapping around to lowest (backward)
-    let backwardDistance = (minServer - 1) + (total_servers - maxServer);
+    // Find max gap between consecutive servers
+    for (let i = 0; i < servers.length - 1; i++) {
+        maxGap = Math.max(maxGap, servers[i + 1] - servers[i]);
+    }
 
-    // Return the shorter distance
-    return Math.min(forwardDistance, backwardDistance);
+    // Also check the wraparound gap (last server to first server in circular order)
+    let wraparoundGap = (total_servers - servers[servers.length - 1]) + servers[0];
+    maxGap = Math.max(maxGap, wraparoundGap);
+
+    // Minimum sync time is half of the largest gap (rounded up)
+    return Math.ceil(maxGap / 2);
 }
 
-//////
 //
+//////
