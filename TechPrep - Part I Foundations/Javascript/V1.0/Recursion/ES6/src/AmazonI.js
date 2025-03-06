@@ -124,7 +124,7 @@ function main() {
  * 
  * Each server is bidirectionally connected to its adjacent servers in a circular fashion:
  *   - Server `1` is connected to `2` and `total_servers`.
- *   - Server `n` is connected to `n-1` and `1`.
+ *   - Server `n` is connected to `n-1` and `n+1`.
  *   - All other servers are connected to their immediate neighbors and it takes 1 unit of time to sync from one server to the next
  * 
  * A synchronization process starts from one of the active servers and spreads to all other active servers.
